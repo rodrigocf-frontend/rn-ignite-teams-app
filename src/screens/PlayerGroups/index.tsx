@@ -2,6 +2,7 @@ import { InputText } from "../../components/InputText";
 import { Container } from "./styles";
 import { Button } from "../../components/Button";
 import { SelectButton } from "../../components/SelectButton";
+import { Highlight } from "../../components/Highlight";
 
 export function PlayerGroups() {
   return (
@@ -11,6 +12,7 @@ export function PlayerGroups() {
       <Button bgColor="RED_700">RED</Button>
       <SelectButton>Time A</SelectButton>
       <SelectButton isSelected>Time B</SelectButton>
+      <Highlight />
     </Container>
   );
 }
