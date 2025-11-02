@@ -10,6 +10,7 @@ import {
 } from "@expo-google-fonts/roboto";
 
 import { Navigation } from "./src/routes";
+import { Container } from "./styles";
 
 SplashScreen.preventAutoHideAsync();
 
@@ -31,7 +32,9 @@ export default function App() {
 
   return (
     <Providers>
-      <Navigation />
+      <Container>
+        <Navigation />
+      </Container>
       <StatusBar style="auto" />
     </Providers>
   );
