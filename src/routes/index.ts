@@ -5,6 +5,7 @@ import {
   createStaticNavigation,
 } from "@react-navigation/native";
 import { theme } from "../themes";
+import { NewGroup } from "../screens/NewGroup";
 
 const RootRoutes = createNativeStackNavigator({
   screens: {
@@ -12,9 +13,16 @@ const RootRoutes = createNativeStackNavigator({
       screen: PlayerGroups,
       options: {
         headerShown: false,
-        // headerStyle: {
-        //   backgroundColor: theme.color.GRAY_600,
-        // },
+      },
+    },
+    NewGroup: {
+      screen: NewGroup,
+      options: {
+        headerStyle: {
+          backgroundColor: theme.color.GRAY_600,
+        },
+        headerShadowVisible: false,
+        title: "",
       },
     },
   },
