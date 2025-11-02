@@ -1,6 +1,10 @@
-import styled from "styled-components/native";
+import styled, { DefaultTheme } from "styled-components/native";
 
-interface Props {
+export interface ErrorProps {
+  hasError?: boolean;
+}
+
+interface Props extends ErrorProps {
   isFocused: boolean;
 }
 
@@ -14,6 +18,20 @@ export const Container = styled.TextInput.attrs<Props>(({ theme }) => ({
   padding: 16px;
   border-radius: 6px;
   border-width: 1px;
-  border-color: ${({ theme, isFocused }) =>
-    isFocused ? theme.color.GREEN_500 : theme.color.GRAY_700};
+  border-color: ${({ isFocused, theme, hasError }) =>
+    borderColorHandler({ isFocused, hasError, theme })};
 `;
+
+const borderColorHandler = ({
+  isFocused,
+  theme,
+  hasError,
+}: Props & { theme: DefaultTheme }) => {
+  if (hasError) {
+    return `${theme.color.RED_500}`;
+  }
+  if (isFocused) {
+    return `${theme.color.GREEN_500}`;
+  }
+  return `${theme.color.GRAY_700}`;
+};

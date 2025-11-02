@@ -1,8 +1,8 @@
 import { TextInputProps } from "react-native";
-import { Container } from "./styles";
+import { Container, ErrorProps } from "./styles";
 import { useState } from "react";
 
-export function InputText({ ...args }: TextInputProps) {
+export function InputText({ hasError, ...args }: TextInputProps & ErrorProps) {
   const [isFocused, setIsFocused] = useState(false);
 
   const handleFocus = () => setIsFocused(true);
@@ -14,6 +14,7 @@ export function InputText({ ...args }: TextInputProps) {
       isFocused={isFocused}
       onFocus={handleFocus}
       onBlur={handleBlur}
+      hasError={hasError}
     />
   );
 }
