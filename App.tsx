@@ -8,6 +8,7 @@ import {
   Roboto_400Regular,
   Roboto_700Bold,
 } from "@expo-google-fonts/roboto";
+import { Container } from "./styles";
 
 SplashScreen.preventAutoHideAsync();
 
@@ -29,7 +30,9 @@ export default function App() {
 
   return (
     <Providers>
-      <PlayerGroups />
+      <Container>
+        <PlayerGroups />
+      </Container>
       <StatusBar style="auto" />
     </Providers>
   );
