@@ -9,7 +9,7 @@ type Players = {
   groupTime: GroupTime;
 };
 
-type Group = {
+export type Group = {
   id: string;
   name: string;
   players: Players[];

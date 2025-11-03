@@ -1,21 +1,43 @@
-import { InputText } from "../../components/InputText";
-import { Container } from "./styles";
-import { Button } from "../../components/Button";
-import { SelectButton } from "../../components/SelectButton";
+import { Body, ButtonContainer, Container, Header } from "./styles";
 import { Highlight } from "../../components/Highlight";
+import { useNavigation } from "@react-navigation/native";
+import { Logo } from "../../components/Logo";
+import { GroupItem } from "../../components/GroupItem";
+import { use } from "react";
+import { GroupsContext } from "../../store/GroupsContext";
+import { FlatList } from "react-native";
+import { Button } from "../../components/Button";
+import { ListEmpty } from "../../components/EmptyList";
 
 export function PlayerGroups() {
+  const navigation = useNavigation();
+  const { groups } = use(GroupsContext);
+
   return (
     <Container>
-      <InputText placeholder="Text" />
-      <Button>Green</Button>
-      <Button bgColor="RED_700">RED</Button>
-      <SelectButton>Time A</SelectButton>
-      <SelectButton isSelected>Time B</SelectButton>
-      <Highlight
-        title="Nova Turma"
-        subtitle="crie uma turma para adicionar pessoas"
-      />
+      <Header>
+        <Logo />
+      </Header>
+      <Highlight title="Turmas" subtitle="jogue com a sua turma" />
+      <Body>
+        <FlatList
+          data={groups}
+          keyExtractor={({ id }) => id}
+          renderItem={({ item }) => <GroupItem data={item} />}
+          ListEmptyComponent={() => (
+            <ListEmpty title="Que tal cadastrar a primeira turma?" />
+          )}
+          contentContainerStyle={{
+            gap: 16,
+          }}
+          showsVerticalScrollIndicator={false}
+        />
+        <ButtonContainer>
+          <Button onPress={() => navigation.navigate("NewGroup")}>
+            Criar nova turma
+          </Button>
+        </ButtonContainer>
+      </Body>
     </Container>
   );
 }

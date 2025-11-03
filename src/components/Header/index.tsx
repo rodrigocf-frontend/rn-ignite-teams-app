@@ -3,7 +3,7 @@ import { CaretLeftIcon } from "phosphor-react-native";
 import { Button, Container } from "./styles";
 import { useNavigation } from "@react-navigation/native";
 import { useTheme } from "styled-components/native";
-import { Image, StatusBar } from "react-native";
+import { Logo } from "../Logo";
 
 export function Header() {
   const navigation = useNavigation();
@@ -14,7 +14,7 @@ export function Header() {
       <Button onPress={() => navigation.goBack()}>
         <CaretLeftIcon size={32} color={theme.color.WHITE} />
       </Button>
-      <Image source={require("../../../assets/logo.png")} />
+      <Logo />
     </Container>
   );
 }
