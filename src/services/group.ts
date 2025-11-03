@@ -10,7 +10,6 @@ type GroupStorageData = {
 
 export const getGroups = async () => {
   try {
-    AppError("");
     const data = await AsyncStorage.getItem("@groups/data");
 
     if (data) {
