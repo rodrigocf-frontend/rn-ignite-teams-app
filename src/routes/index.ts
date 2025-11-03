@@ -7,6 +7,7 @@ import {
 } from "@react-navigation/native";
 import { Header } from "../components/Header";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { Group } from "../screens/Group";
 
 const RootRoutes = createNativeStackNavigator({
   screens: {
@@ -23,7 +24,16 @@ const RootRoutes = createNativeStackNavigator({
         headerStyle: {
           backgroundColor: theme.color.GRAY_600,
         },
-        headerShadowVisible: false,
+        title: "",
+      },
+    },
+    Group: {
+      screen: Group,
+      options: {
+        header: Header,
+        headerStyle: {
+          backgroundColor: theme.color.GRAY_600,
+        },
         title: "",
       },
     },
