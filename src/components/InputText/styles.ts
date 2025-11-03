@@ -8,18 +8,26 @@ interface Props extends ErrorProps {
   isFocused: boolean;
 }
 
-export const Container = styled.TextInput.attrs<Props>(({ theme }) => ({
+export const Container = styled.View<Props>`
+  background-color: ${({ theme }) => theme.color.GRAY_700};
+  flex-direction: row;
+  border-color: ${({ isFocused, theme, hasError }) =>
+    borderColorHandler({ isFocused, hasError, theme })};
+  border-radius: 6px;
+  border-width: 1px;
+  justify-content: space-between;
+  align-items: center;
+`;
+
+export const TextField = styled.TextInput.attrs(({ theme }) => ({
   placeholderTextColor: theme.color.GRAY_300,
 }))`
-  background-color: ${({ theme }) => theme.color.GRAY_700};
   font-family: ${({ theme }) => theme.font.ROBOTO_REGULAR};
   color: ${({ theme }) => theme.color.GRAY_200};
   font-size: ${({ theme }) => theme.size.NM};
   padding: 16px;
+  flex: 1;
   border-radius: 6px;
-  border-width: 1px;
-  border-color: ${({ isFocused, theme, hasError }) =>
-    borderColorHandler({ isFocused, hasError, theme })};
 `;
 
 const borderColorHandler = ({
@@ -35,3 +43,11 @@ const borderColorHandler = ({
   }
   return `${theme.color.GRAY_700}`;
 };
+
+export const Button = styled.TouchableOpacity.attrs({
+  activeOpacity: 1,
+})`
+  padding-right: 16px;
+  justify-content: center;
+  align-items: center;
+`;

@@ -1,20 +1,33 @@
 import { TextInputProps } from "react-native";
-import { Container, ErrorProps } from "./styles";
-import { useState } from "react";
+import { Container, ErrorProps, TextField } from "./styles";
+import { ReactNode, useState } from "react";
+import { Button } from "./styles";
 
-export function InputText({ hasError, ...args }: TextInputProps & ErrorProps) {
+type Props = TextInputProps &
+  ErrorProps & {
+    afterInput?: {
+      onPress?: () => void;
+      Icon?: ReactNode;
+    };
+  };
+
+export function InputText({ hasError, afterInput, ...args }: Props) {
   const [isFocused, setIsFocused] = useState(false);
 
   const handleFocus = () => setIsFocused(true);
   const handleBlur = () => setIsFocused(false);
 
   return (
-    <Container
-      {...args}
-      isFocused={isFocused}
-      onFocus={handleFocus}
-      onBlur={handleBlur}
-      hasError={hasError}
-    />
+    <Container isFocused={isFocused} hasError={hasError}>
+      <TextField
+        placeholder="Nome do participante"
+        {...args}
+        onFocus={handleFocus}
+        onBlur={handleBlur}
+      />
+      {afterInput && (
+        <Button onPress={afterInput?.onPress}>{afterInput?.Icon}</Button>
+      )}
+    </Container>
   );
 }
