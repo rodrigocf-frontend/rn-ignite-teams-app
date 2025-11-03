@@ -1,5 +1,7 @@
 import _ from "lodash";
-import { PropsWithChildren, createContext, useState } from "react";
+import { PropsWithChildren, createContext, useEffect, useState } from "react";
+import { getGroups, saveGroups } from "../services/group";
+import { Alert } from "react-native";
 
 export type Team = "A" | "B";
 
@@ -46,7 +48,11 @@ type RemovePlayerParams = Omit<Player, "group" | "name"> & {
 export const GroupsContext = createContext(initialState);
 
 export function GroupsProvider({ children }: PropsWithChildren) {
-  const [state, setState] = useState(initialState);
+  const [state, setState] = useState({
+    groups: initialState.groups,
+    lastGroupId: initialState.lastGroupId,
+    lastPlayerId: initialState.lastPlayerId,
+  });
 
   const createGroup = (name: string) =>
     setState((prevState) => ({
@@ -106,6 +112,24 @@ export function GroupsProvider({ children }: PropsWithChildren) {
       }),
     }));
   };
+
+  useEffect(() => {
+    getGroups()
+      .then((data) => setState(data))
+      .catch((e) => {
+        Alert.alert("Error", _.toString(e));
+      });
+  }, []);
+
+  useEffect(() => {
+    saveGroups({
+      groups: state.groups,
+      lastGroupId: state.lastGroupId,
+      lastPlayerId: state.lastPlayerId,
+    }).catch((e) => {
+      Alert.alert("Error", _.toString(e));
+    });
+  }, [state.groups, state.lastGroupId, state.lastPlayerId]);
 
   return (
     <GroupsContext.Provider
