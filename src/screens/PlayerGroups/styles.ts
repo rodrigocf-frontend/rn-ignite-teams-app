@@ -19,5 +19,5 @@ export const Body = styled.View`
 `;
 
 export const ButtonContainer = styled.View`
-  padding-top: 20;
+  padding-top: 20px;
 `;
