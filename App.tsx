@@ -1,5 +1,4 @@
 import { StatusBar } from "expo-status-bar";
-import { PlayerGroups } from "./src/screens/PlayerGroups";
 import { Providers } from "./src/store";
 import * as SplashScreen from "expo-splash-screen";
 import { useEffect } from "react";
@@ -35,7 +34,7 @@ export default function App() {
       <Container>
         <Navigation />
       </Container>
-      <StatusBar style="auto" />
+      <StatusBar style="light" />
     </Providers>
   );
 }

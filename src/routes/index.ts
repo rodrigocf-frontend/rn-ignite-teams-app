@@ -1,11 +1,12 @@
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { PlayerGroups } from "../screens/PlayerGroups";
+import { theme } from "../themes";
+import { NewGroup } from "../screens/NewGroup";
 import {
   StaticParamList,
   createStaticNavigation,
 } from "@react-navigation/native";
-import { theme } from "../themes";
-import { NewGroup } from "../screens/NewGroup";
+import { Header } from "../components/Header";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
 const RootRoutes = createNativeStackNavigator({
   screens: {
@@ -18,6 +19,7 @@ const RootRoutes = createNativeStackNavigator({
     NewGroup: {
       screen: NewGroup,
       options: {
+        header: Header,
         headerStyle: {
           backgroundColor: theme.color.GRAY_600,
         },
