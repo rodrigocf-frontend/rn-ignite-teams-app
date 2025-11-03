@@ -77,7 +77,7 @@ O projeto foi construído utilizando as seguintes ferramentas e conceitos, confo
 ## 💡 Detalhes Técnicos (Destaques no Portfólio)
 
 - **Persistência de Estado (`AsyncStorage`):** Implementação do salvamento e carregamento da lista de turmas no _storage_ local, garantindo que os dados permaneçam após o fechamento do app.
-- **Imutabilidade e Lodash:** Uso de funções para manipular o array de participantes sem modificar o estado diretamente, seguindo o princípio da imutabilidade do React.
+- **Imutabilidade e Lodash:** Uso de funções para manipular o array de turmas e jogadores sem modificar o estado diretamente, seguindo o princípio da imutabilidade do React.
 
 ---
 
